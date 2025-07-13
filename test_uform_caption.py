@@ -4,11 +4,11 @@ from PIL import Image
 from transformers import AutoModel, AutoProcessor
 
 print("Loading uform-gen2-qwen-500m model...")
-model = AutoModel.from_pretrained("unum-cloud/uform-gen2-qwen-500m", trust_remote_code=True, torch_dtype=torch.bfloat16)
+model = AutoModel.from_pretrained("unum-cloud/uform-gen2-qwen-500m", trust_remote_code=True)
 processor = AutoProcessor.from_pretrained("unum-cloud/uform-gen2-qwen-500m", trust_remote_code=True)
 
-# Move model to GPU if available
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+# Use CPU for now to avoid dtype issues
+device = torch.device("cpu")
 print(f"Using device: {device}")
 model = model.to(device)
 
